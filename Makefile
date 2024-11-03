@@ -1,6 +1,7 @@
 .PHONY: build docker build-all
 
-build-all: build-linux-amd64 build-linux-arm64
+build-all: build-linux-armv7
+#build-linux-amd64 build-linux-arm64
 
 build-test:
 	@go mod tidy
@@ -14,6 +15,10 @@ build-linux-amd64:
 build-linux-arm64:
 	@mkdir -p build
 	@CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -gcflags "all=-N -l" -ldflags "-s -w" -o build/deeplx_linux_arm64 .
+
+build-linux-armv7:
+	@mkdir -p build
+	@CGO_ENABLED=0 GOOS=linux GOARCH=arm go build -gcflags "all=-N -l" -ldflags "-s -w" -o build/deeplx_linux_arm .
 
 gox-linux:
 	gox -gcflags="all=-N -l" -ldflags "-s -w" -osarch="linux/amd64 linux/arm64" -output="build/deeplx_{{.OS}}_{{.Arch}}"
