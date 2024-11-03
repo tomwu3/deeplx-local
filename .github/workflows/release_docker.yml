@@ -16,7 +16,7 @@ jobs:
       - name: Generate tags
         id: meta
         run: |
-          echo "tags=neccen/deeplx-local:$(date +%Y%m%d)-${GITHUB_SHA::8},neccen/deeplx-local:latest" >> $GITHUB_OUTPUT
+          echo "tags=junlinwu/deeplx-local:$(date +%Y%m%d)-${GITHUB_SHA::8},junlinwu/deeplx-local:latest" >> $GITHUB_OUTPUT
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
